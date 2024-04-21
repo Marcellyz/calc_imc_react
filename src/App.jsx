@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <div>
-        
+        <h1>IMC CALC</h1>
       </div>
     </>
   )
