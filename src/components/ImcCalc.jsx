@@ -1,8 +1,9 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
 import Button from "./Button";
 import "./ImcCalc.css";
 
-const ImcCalc = () => {
+const ImcCalc = ({ calcImc }) => {
     const [height, setHeight]=useState("");
     const [weight, setWeight]=useState("");
 
@@ -25,6 +26,10 @@ const ImcCalc = () => {
         const updatedValue = validDigits(e.target.value);
         setWeight(updatedValue);
     };
+
+    ImcCalc.propTypes = {
+        calcImc: PropTypes.string.isRequired,
+    }
 
   return (
     <div id="calc-container">
@@ -51,7 +56,7 @@ const ImcCalc = () => {
                 </div>
             </div>
             <div className="action-control">
-                <Button id="calc-btn" text="Calcular"/>
+                <Button id="calc-btn" text="Calcular" action={(e) => calcImc(e, weight, height)}/>
                 <Button id="clear-btn" text="Limpar" action={clearForm}/>
             </div>
         </form>
