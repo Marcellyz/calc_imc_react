@@ -1,38 +1,49 @@
-import ImcCalc from './components/ImcCalc';
-import ImcTable from '.components/ImcTable'
-import {data} from './data/data';
-import { useState } from 'react'
+import ImcCalc from "./components/ImcCalc";
+import ImcTable from ".components/ImcTable";
+import { data } from "./data/data";
+import { useState } from "react";
 
-
-
-import './App.css'
+import "./App.css";
 
 function App() {
   const calcImc = (e, weight, height) => {
-  e.preventDefault();
+    e.preventDefault();
 
     console.log(weight, height);
 
-  if(!weight || !height)return;
+    if (!weight || !height) return;
 
-  const weightFloat = +weight.replace(",", ".");
-  const heightFloat = +height.replace(",", ".");
+    const weightFloat = +weight.replace(",", ".");
+    const heightFloat = +height.replace(",", ".");
 
-  const imcResult = (weightFloat / (heightFloat * heightFloat)).toFixed(1);
+    const imcResult = (weightFloat / (heightFloat * heightFloat)).toFixed(1);
 
     setImc(imcResult);
-  }
- const [imc, setImc] = useState("");
- const [info, setInfo] = useState("");
- const [infoClass, setInfoClass] = useState("");
+
+    data.forEach((item) => {
+      if (imcResult >= item.min && imcResult <= item.max) {
+        setInfo(item.info);
+        setInfoClass(item.infoClass);
+      }
+    });
+
+    if (!info) return;
+  };
+  const [imc, setImc] = useState("");
+  const [info, setInfo] = useState("");
+  const [infoClass, setInfoClass] = useState("");
 
   return (
     <>
-      <div className='container'>
-        {imc ? <ImcCalc  calcImc ={calcImc}/> : <ImcTable data={data}/>}
+      <div className="container">
+        {imc ? (
+          <ImcCalc calcImc={calcImc} />
+        ) : (
+          <ImcTable data={data} imc={imc} info={info} infoClass={infoClass} />
+        )}
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
