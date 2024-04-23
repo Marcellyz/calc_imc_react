@@ -1,16 +1,18 @@
 import PropTypes from 'prop-types';
 import "./Button.css";
 
-const Button = ({id, text, action}) => {
+const Button = ({ id, text, action }) => {
   const handleAction = (e) => {
-    action(e)
+    action(e);
   };
+
   return (
     <button id={id} onClick={handleAction}>
       {text}
     </button>
   );
 };
+
 
 Button.propTypes = {
   id: PropTypes.string.isRequired, // Validando que a prop id é uma string e obrigatória
