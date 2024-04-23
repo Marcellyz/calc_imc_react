@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Button from "./Button";
 import "./ImcTable.css";
 
-const ImcTable = ({ data, imc, info, infoClass }) => {
+const ImcTable = ({ data, imc, info, infoClass, resetCalc }) => {
   return (
     <div id="result-container">
       <p id="imc-number">
@@ -24,16 +24,17 @@ const ImcTable = ({ data, imc, info, infoClass }) => {
           </div>
         ))}
       </div>
-      <Button id="back-btn" text="voltar" />
+      <Button id="back-btn" text="voltar" action={resetCalc} />
     </div>
   );
 };
 
 ImcTable.propTypes = {
-  data: PropTypes.string.isRequired, // Validando que a prop action é uma função e obrigatória
+  data: PropTypes.string.isRequired,
   info: PropTypes.string.isRequired,
   imc: PropTypes.string.isRequired,
-  infoClass: PropTypes.string.isRequired
+  infoClass: PropTypes.string.isRequired,
+  resetCalc: PropTypes.string.isRequired
 };
 
 export default ImcTable;

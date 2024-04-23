@@ -64,4 +64,4 @@ const ImcCalc = ({ calcImc }) => {
   )
 }
 
-export default ImcCalc
+export default ImcCalc;
